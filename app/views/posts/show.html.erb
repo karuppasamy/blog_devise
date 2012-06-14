@@ -1,34 +1,42 @@
 <% title "Post" %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-
-<h2>Comments</h2>
-
-<% @post.comments.each do |comment| %>
-	<p> <%= comment.body %> </p>
-	<p> <%= time_ago_in_words comment.created_at %> </p>
-	<p> <%= link_to "Delete Comment", [@post, comment], :method => :delete, :confirm => "Are you sure?" %></p>
-<% end %>
-
-
-<%= form_for [@post, @post.comments.build] do |f| %>
-	 	<p> <%= f.label :body %> </p>
-	 	<p> <%= f.text_area :body, :size => "40x10" %> </p>
-	 	<p> <%= f.submit "Add Comment" %> </p> 
-<% end %>
 
 
 
+<div class="block center login small" style="width: 780px; min-height: 20%;">
+	<div class="block_head">        
+		<h2><%= @post.title %></h2> 
+		<span style="float:right;">Last Edit: [<%= time_ago_in_words @post.created_at %> ago]</span>
+	</div>
 
-<p>
- 	<%= link_to "Back", posts_path %> |	
-	<%= link_to "Edit", edit_post_path(@post) %> |
-	<%= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete %> |	
-</p>
+<div class="block_content">
+	<ul style="margin-left:0px;">
+		<li> <h3> <%= @post.body %> </h3> </li>	
+	</ul>
+
+	<br />
+
+    <div style="margin-left: 20px;">
+      	<h2>Comments:</h2>
+      	<div style="margin-left: 10px;">
+	      	<% @post.comments.each do |comment| %>
+				<p> <i><%= comment.body %></i> </p>
+
+				<div style="width:98%; background-color: rgb(240,240,240); margin: 5px;">
+	 				<%= time_ago_in_words comment.created_at %> ago | <%= link_to "Delete", [@post, comment], :method => :delete, :confirm => "Are you sure?" %>
+	  			</div>					
+			<% end %>
+		</div>
+
+		<br />
+
+		<div class="input string">
+			<%= form_for [@post, @post.comments.build] do |f| %>
+			 	<%= f.label :your_comments, :class => "string" %>
+			 	<%= f.text_area :body, :size => "40x10", :class => "string" %>
+			 	<%= f.submit "Add Comment", :class => "full-width-button", :style => "width: 200px;" %>
+			<% end %>
+		</div>	
+	</div> 
+</div>	
+</div>    

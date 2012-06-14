@@ -15,7 +15,7 @@
 			<div class="wrapper">
 				<ul>			
 					<li>
-					Welcome, <%= link_to current_user.username, edit_user_registration_url %> | <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>		
+					<%= link_to "Back", posts_path %> | <%= link_to "New Post", new_post_path %> | Welcome, <%= link_to current_user.username, edit_user_registration_url %> | <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>		
 					</li>
 				</ul>
 			</div>

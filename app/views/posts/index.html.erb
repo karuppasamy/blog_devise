@@ -1,9 +1,26 @@
+<div class="block center login small" style="width: 780px; min-height: 20%;">
+	<% @posts.each do |post| %>
+	      <div class="block_head">        
+	        <h2><%=  link_to( (truncate post.title, :length => 60), post )%></h2> 
+	        <span style="float:right;">[<%= time_ago_in_words post.created_at %> ago]</span>
+	      </div>
 
-<% @posts.each do |post| %>
-    <p> <%= link_to post.title, post %> </p>
-    <p> <%= time_ago_in_words post.created_at %> ago </p>
-    <p> <%= truncate post.body %> </p>
-    <p> Comments <%= post.comments.length %> </p>
+	      <ul style="margin-left:20px;">
+	      	<li> <h3> <%= truncate post.body, :length => 250, :omission => '... (continued)' %> </h3> </li>	
+	      </ul>
+
+	      <div style="width:98%; background-color: rgb(240,240,240); margin: 5px; padding: 2px 3px;">
+		 	Comments: <%= post.comments.length %> |		 	
+		 		<%= link_to "Edit", edit_post_path(post) %> |
+				<%= link_to "Delete", post, :confirm => 'Are you sure?', :method => :delete %>		 	
+		  </div>
+	<% end %>
+
+<% if @posts.nil? %>
+	<div class="block_head">        
+		<h2>Opps! There is no post.</h2> 		
+	</div>
+	
 <% end %>
 
-<p><%= link_to "New Post", new_post_path %></p>
+</div>    

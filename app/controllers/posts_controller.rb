@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!
   
-  def index
-    @posts = Post.all
+  def index    
+    @posts = Post.order("created_at desc")
   end
 
   def show
