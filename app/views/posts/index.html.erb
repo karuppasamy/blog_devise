@@ -1,0 +1,9 @@
+
+<% @posts.each do |post| %>
+    <p> <%= link_to post.title, post %> </p>
+    <p> <%= time_ago_in_words post.created_at %> ago </p>
+    <p> <%= truncate post.body %> </p>
+    <p> Comments <%= post.comments.length %> </p>
+<% end %>
+
+<p><%= link_to "New Post", new_post_path %></p>

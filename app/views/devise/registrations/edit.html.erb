@@ -1,0 +1,47 @@
+<div class="wrapper">
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "simple_form user"}) do |f| %>
+
+    <div class="block center login small">
+      <div class="block_head">        
+        <h2> Edit <%= resource_name.to_s.humanize %> </h2>        
+      </div>
+      <div class="block_content">
+
+        <%= devise_error_messages! %>
+
+        <div class="input string email required">
+          <%= f.label :email, :class => "email required" %>       
+          <%= f.email_field :email, :class => "string email required" %>        
+        </div>
+
+        <div class="input string email required">
+          <%= f.label :username, :class => "email required" %>        
+          <%= f.text_field :username, :class => "string email required" %>        
+        </div>
+
+        <div class="input password required">
+          <%= f.label :password, :class => "password required" %><i>(leave blank if you don't want to change it)</i>
+          <%= f.password_field :password, :class => "password required", :autocomplete => "off" %>        
+        </div>
+
+        <div class="input password required">
+          <%= f.label :password_confirmation, :class => "password required" %>
+          <%= f.password_field :password_confirmation, :class => "password required" %> 
+        </div>
+
+        <div class="input password required">
+          <%= f.label :current_password, :class => "password required" %><i>(we need your current password to confirm your changes)</i>
+          <%= f.password_field :current_password, :class => "password required" %>        
+        </div>
+
+        <%= f.submit "Update", :class => "full-width-button" %>
+    </div>
+  <% end %> 
+</div>
+
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
+
+<%= link_to "Back", :back %>

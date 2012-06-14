@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BlogDevise</title>
+  <%= stylesheet_link_tag  "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="hld">
+	
+	<% if user_signed_in? %>		
+		<div class="menu-hud">
+			<div class="wrapper">
+				<ul>			
+					<li>
+					Welcome, <%= link_to current_user.username, edit_user_registration_url %> | <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>		
+					</li>
+				</ul>
+			</div>
+		</div>
+	<% end %>
+
+	<%= yield %>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<div class="wrapper">
+	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => "simple_form user") do |f| %>	
+
+		<div class="block center login small">
+			<div class="block_head">
+				<h2>Sign in</h2>
+				<ul>
+					<li> <%= link_to "Sign up", new_user_registration_url %> </li>
+					<li> <%= link_to "Forgot Password?", new_user_password_url %></li>
+				</ul>
+			</div>
+			<div class="block_content">
+
+				<%= devise_error_messages! %>
+
+				<div class="input string email required">
+					<%= f.label :username, :class => "email required" %>				
+					<%= f.text_field :username, :class => "string required" %>				
+				</div>
+
+				<div class="input password required">
+					<%= f.label :password, :class => "password required" %>
+					<%= f.password_field :password, :class => "password required" %>				
+				</div>
+
+				<% if devise_mapping.rememberable? -%>
+					<div class="input boolean optional">
+
+						<%= f.check_box :remember_me, :class => "boolean optional", :value => "1" %> 
+						<%= f.label :remember_me, :class => "boolean optional" %>
+					</div>
+				<% end -%>    				  				
+				
+				<%= f.submit "Login", :class => "full-width-button" %>
+		</div>
+	<% end %>	
+</div>
+
+
+
+
